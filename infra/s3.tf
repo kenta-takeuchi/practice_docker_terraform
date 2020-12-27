@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "alb_log" {
-  bucket = "alb-log-pragmatic-terraform"
+  bucket = "alb-log-practice-docker-terraform"
 
   lifecycle_rule {
     enabled = true
