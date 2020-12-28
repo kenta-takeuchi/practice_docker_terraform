@@ -24,7 +24,7 @@ resource "aws_codepipeline" "practice" {
         OAuthToken = var.GITHUB_TOKEN
         Owner = "kenta-takeuchi"
         Repo = "practice_docker_terraform"
-        Branch = "master"
+        Branch = "main"
         PollForSourceChanges = false
       }
     }
