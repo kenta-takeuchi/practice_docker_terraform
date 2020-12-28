@@ -9,6 +9,18 @@ resource "aws_s3_bucket" "alb_log" {
   }
 }
 
+resource "aws_s3_bucket" "artifact" {
+  bucket = "artifact-practice-docker-terraform"
+
+  lifecycle_rule {
+    enabled = true
+    expiration {
+      days = "7"
+    }
+  }
+}
+
+
 resource "aws_s3_bucket_policy" "alb_log" {
   bucket = aws_s3_bucket.alb_log.id
   policy = data.aws_iam_policy_document.alb_log.json
