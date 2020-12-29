@@ -1,7 +1,7 @@
 [
   {
-    "name": "practice-nginx",
-    "image": "nginx:latest",
+    "name": "api",
+    "image": "api:latest",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",

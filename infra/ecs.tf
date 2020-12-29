@@ -32,7 +32,7 @@ resource "aws_ecs_service" "practice" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.practice.arn
-    container_name = "practice"
+    container_name = "api"
     container_port = 80
   }
 

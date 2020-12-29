@@ -1,8 +1,26 @@
-# ベースとなるDockerイメージ指定
-FROM golang:latest
-# コンテナ内に作業ディレクトリを作成
-RUN mkdir /go/src/work
-# コンテナログイン時のディレクトリ指定
-WORKDIR /go/src/work
-# ホストのファイルをコンテナの作業ディレクトリに移行
-ADD . /go/src/work
+# 公式からpython3.7 on alpine linuxイメージをpull
+FROM python:3.9-alpine
+
+# 作業ディレクトリを設定
+WORKDIR /usr/src/app
+
+# 環境変数を設定
+# Pythonがpyc filesとdiscへ書き込むことを防ぐ
+ENV PYTHONDONTWRITEBYTECODE 1
+# Pythonが標準入出力をバッファリングすることを防ぐ
+ENV PYTHONUNBUFFERED 1
+
+# Pipenvをインストール
+RUN pip install --upgrade pip \
+&& pip install pipenv
+
+# ホストのpipfileをコンテナの作業ディレクトリにコピー
+COPY ./Pipfile /usr/src/app/Pipfile
+
+# pipfileからパッケージをインストールしてDjango環境を構築
+RUN pipenv install --skip-lock --system --dev
+
+# ホストのカレントディレクトリ（現在はappディレクトリ）を作業ディレクトリにコピー
+COPY . /usr/src/app/
+
+RUN python manage.py runserver 0.0.0.0:8000
