@@ -63,7 +63,7 @@ resource "aws_codepipeline" "practice" {
       configuration = {
         ClusterName = aws_ecs_cluster.practice.name
         ServiceName = aws_ecs_service.practice.name
-        FileName = "imagedefinitions.json"
+        FileName    = "imagedefinitions.json"
       }
     }
   }
