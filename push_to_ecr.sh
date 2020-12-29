@@ -11,4 +11,4 @@ done
 echo Push completed on `date`
 
 echo Writing image definitions file...
-printf '[{"name":"api","imageUri":"%s"}]' "${REPO}/api}:latest" > imagedefinitions.json
+printf '[{"name":"api","imageUri":"%s"}]' "${REPO}/api:latest" > imagedefinitions.json
