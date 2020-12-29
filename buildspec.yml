@@ -6,9 +6,9 @@ phases:
       docker: 18
   build:
     commands:
-      - build_docker_image.sh
+      - bash ./build_docker_image.sh
   post_build:
     commands:
-      - push_to_ecr.sh
+      - bash ./push_to_ecr.sh
 artifacts:
   files: imagedefinitions.json
